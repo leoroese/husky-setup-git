@@ -1,4 +1,3 @@
 {
-    "*.(js|ts|json)": "eslint --fix",
-    "*.(test|spec).(js|ts)": "eslint --fix"
+    "*.(js|ts)": "eslint --fix"
 }

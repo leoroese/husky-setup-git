@@ -46,3 +46,5 @@ if [[ ! $msg =~ $regexp ]]; then
   # exit with an error
   exit 1
 fi
+
+exit 1

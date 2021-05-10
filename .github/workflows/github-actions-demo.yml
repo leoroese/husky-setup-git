@@ -24,11 +24,10 @@ jobs:
       - name: Run tests
         run: npm test
       - name: Finish
-        with: # Set the secret as an input
-          MY_NAME: ${{ secrets.MY_NAME }}
         env: # Or as an environment variable
           MY_NAME: ${{ secrets.MY_NAME }}
-        run: echo "🍏 This job's status is ${{ job.status }}. Congrats you are good to go $MY_NAME"
+        run: |
+          echo "🍏 This job's status is ${{ job.status }}. Congrats you are good to go $MY_NAME"
 
     # Example of how to add deployment to heroku as a step
     # steps:

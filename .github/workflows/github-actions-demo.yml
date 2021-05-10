@@ -1,14 +1,13 @@
 name: Explore github actions
 on: 
     push:
-      branches: [ main ]
+      branches: [ master ]
     pull_request:
-      branches: [ main ]
+      branches: [ master ]
 jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
       - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
       - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
       - name: Check out repository code
@@ -18,7 +17,17 @@ jobs:
       - name: List files in the repository
         run: |
           ls ${{ github.workspace }}
-      - run: echo "🍏 This job's status is ${{ job.status }}."
+      - name: Set up node 
+        uses: actions/setup-node@v1
+      - name: Install dependencies
+        run: npm install
+      - name: Run tests
+        run: npm test
+      - name: Finish
+        env: # Or as an environment variable
+          MY_NAME: ${{ secrets.MY_NAME }}
+        run: |
+          echo "🍏 This job's status is ${{ job.status }}. Congrats you are good to go $MY_NAME"
 
     # Example of how to add deployment to heroku as a step
     # steps:

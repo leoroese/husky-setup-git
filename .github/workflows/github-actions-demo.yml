@@ -23,7 +23,7 @@ jobs:
         run: npm install
       - name: Run tests
         run: npm test
-      - run: echo "🍏 This job's status is ${{ job.status }}."
+      - run: echo "🍏 This job's status is ${{ job.status }}. Congrats you are good to go ${{secrets.MY_NAME}}"
 
     # Example of how to add deployment to heroku as a step
     # steps:

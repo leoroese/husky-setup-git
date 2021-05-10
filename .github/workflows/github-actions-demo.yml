@@ -17,9 +17,12 @@ jobs:
       - name: List files in the repository
         run: |
           ls ${{ github.workspace }}
-      - name: Run unit tests
-        run: |
-          npm test
+      - name: Set up node 
+        uses: actions/setup-node@v1
+      - name: Install dependencies
+        run: npm install
+      - name: Run tests
+        run: npm test
       - run: echo "🍏 This job's status is ${{ job.status }}."
 
     # Example of how to add deployment to heroku as a step

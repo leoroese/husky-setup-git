@@ -8,6 +8,7 @@ jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
     steps:
+      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
       - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
       - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
       - name: Check out repository code
@@ -17,21 +18,17 @@ jobs:
       - name: List files in the repository
         run: |
           ls ${{ github.workspace }}
+      - run: echo "🍏 This job's status is ${{ job.status }}"
+  Run-Unit-Tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v2
       - name: Set up node 
         uses: actions/setup-node@v1
       - name: Install dependencies
         run: npm install
       - name: Run tests
         run: npm test
-      - run: echo "🍏 This job's status is ${{ job.status }}."
+      - run: echo "🍏 This job's status is ${{ job.status }}"
 
-    # Example of how to add deployment to heroku as a step
-    # steps:
-    #   - uses: actions/checkout@v2
-    #   - uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
-    #     with:
-    #       heroku_api_key: ${{secrets.HEROKU_API_KEY}} // can add this to github secrets
-    #       heroku_app_name: "[app name]" #Must be unique in Heroku
-    #       heroku_email: "[email]"
-    #       usedocker: true
-    #       appdir: "backend/{{SERVICE}}"

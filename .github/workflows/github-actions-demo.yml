@@ -19,4 +19,16 @@ jobs:
         run: |
           ls ${{ github.workspace }}
       - run: echo "🍏 This job's status is ${{ job.status }}"
+  Run-Unit-Tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v2
+      - name: Set up node 
+        uses: actions/setup-node@v1
+      - name: Install dependencies
+        run: npm install
+      - name: Run tests
+        run: npm test
+      - run: echo "🍏 This job's status is ${{ job.status }}"
 
